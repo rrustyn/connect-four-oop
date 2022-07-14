@@ -114,7 +114,7 @@ function handleClick(evt) {
   currPlayer = currPlayer === 1 ? 2 : 1;
 }
 
-/** checkForWin: check board cell-by-cell for "does a win start here?" */
+
 
 function checkForWin() {
   function _win(cells) {
