@@ -5,9 +5,17 @@ class Game {
     this.width = width;
     this.height = height;
     this.currPlayer = 1;
-    this.makeBoard();
-    this.makeHtmlBoard();
+    this.startGame();
+  }
 
+  /** Button to start game */
+
+  startGame() {
+    const startButton = document.getElementById("start");
+    startButton.addEventListener("click", () => {
+      this.makeBoard();
+      this.makeHtmlBoard();
+    });
   }
 
   /** makeBoard: create in-JS board structure:
