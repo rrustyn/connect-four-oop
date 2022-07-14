@@ -5,9 +5,7 @@ class Game {
     this.width = width;
     this.height = height;
     this.currPlayer = 1;
-
-    //Does this work:
-    this.board = this.makeBoard();
+    this.makeBoard();
     this.makeHtmlBoard();
 
   }
@@ -17,11 +15,10 @@ class Game {
   */
 
   makeBoard() {
-    let board = []
+    this.board = [];
     for (let y = 0; y < this.height; y++) {
-      board.push(Array.from({ length: this.width }));
+      this.board.push(Array.from({ length: this.width }));
     }
-    return board
   }
 
   /** makeHtmlBoard: make HTML table and row of column tops. */
@@ -102,9 +99,9 @@ class Game {
     this.placeInTable(y, x);
 
     // check for win
-    // if (this.checkForWin()) {
-    //   return endGame(`Player ${this.currPlayer} won!`);
-    // }
+    if (this.checkForWin()) {
+      return this.endGame(`Player ${this.currPlayer} won!`);
+    }
 
     // // check for tie
     if (this.board.every(row => row.every(cell => cell))) {
@@ -118,8 +115,8 @@ class Game {
 
   /** checkForWin: check board cell-by-cell for "does a win start here?" */
 
-   checkForWin() {
-    function _win(cells) {
+  checkForWin() {
+    const _win = (cells) => {
       // Check four cells to see if they're all color of current player
       //  - cells: list of four (y, x) cells
       //  - returns true if all are legal coordinates & all match currPlayer
@@ -127,12 +124,12 @@ class Game {
       return cells.every(
         ([y, x]) =>
           y >= 0 &&
-          y < height &&
+          y < this.height &&
           x >= 0 &&
-          x < width &&
-          board[y][x] === currPlayer
+          x < this.width &&
+          this.board[y][x] === this.currPlayer
       );
-    }
+    };
 
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) {
@@ -150,16 +147,6 @@ class Game {
       }
     }
   }
-
-
-
-
 }
 
-
-
-
-
-
-
-const game = new Game(4,4)
+const game = new Game(4, 4);
