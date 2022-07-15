@@ -5,6 +5,7 @@ class Game {
     this.width = width;
     this.height = height;
     this.currPlayer = 1;
+    this.gameOver = false;
     this.startGame();
   }
 
@@ -17,6 +18,7 @@ class Game {
       startButton.setAttribute("style", "display: none;");
       this.makeBoard();
       this.makeHtmlBoard();
+      this.gameOver = false;
     });
   }
 
@@ -101,12 +103,15 @@ class Game {
     const startButton = document.getElementById("start");
     startButton.setAttribute("style", "");
     startButton.innerText = "Restart";
+    this.gameOver = true;
   }
 
   /** handleClick: handle click of column top to play piece */
 
   handleClick(evt) {
     // get x from ID of clicked cell
+    if (this.gameOver) return;
+
     const x = +evt.target.id;
 
     // get next spot in column (if none, ignore click)
