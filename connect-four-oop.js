@@ -13,9 +13,19 @@ class Game {
   startGame() {
     const startButton = document.getElementById("start");
     startButton.addEventListener("click", () => {
+      this.clearBoard();
+      startButton.setAttribute("style", "display: none;");
       this.makeBoard();
       this.makeHtmlBoard();
     });
+  }
+
+  clearBoard() {
+    const HTMLboard = document.getElementById("board");
+    if (HTMLboard.children.length !== 0)
+      for (let i = 0; i <= this.height; i++) {
+        HTMLboard.children[0].remove();
+      }
   }
 
   /** makeBoard: create in-JS board structure:
@@ -88,6 +98,9 @@ class Game {
 
   endGame(msg) {
     alert(msg);
+    const startButton = document.getElementById("start");
+    startButton.setAttribute("style", "");
+    startButton.innerText = "Restart";
   }
 
   /** handleClick: handle click of column top to play piece */
