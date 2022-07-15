@@ -1,5 +1,13 @@
 "use strict";
 
+class Player {
+  constructor(color) {
+  this.color;
+
+  }
+}
+
+
 class Game {
   constructor(width = 7, height = 6) {
     this.width = width;
@@ -7,6 +15,8 @@ class Game {
     this.currPlayer = 1;
     this.gameOver = false;
     this.startGame();
+    this.player1 = new Player('red');
+    this.player2 = new Player('blue');
   }
 
   /** Button to start game */
@@ -19,6 +29,8 @@ class Game {
       this.makeBoard();
       this.makeHtmlBoard();
       this.gameOver = false;
+      this.player1.color = document.getElementById('player1color').value;
+      this.player2.color = document.getElementById('player2color').value;
     });
   }
 
